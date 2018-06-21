@@ -1,0 +1,66 @@
+@using beltExam.Models
+@model Auction
+@{
+    ViewData["Title"] = "Welcome to Royeby's";
+}
+@if(ViewBag.id==null)
+{
+    <html>
+        <body>
+                <h1>Please login!</h1>
+                <form action="redirectlogin" method="GET">
+                <button type="submit" class="btn btn-submit">login/Register</button>
+                </form>
+        </body>
+    </html>
+}
+else
+{
+   <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Home Page</title>
+            <link rel="stylesheet" type="text/css" href="~/css/mystyles.css">
+        </head>
+        <body>
+                <h2>@ViewBag.Auction.ProductName </h2>
+
+                <span> Created by: @ViewBag.Auction.host.FirstName</span><br/>
+
+                <h3>Time Remaining:  @if(@ViewBag.Auction.EndDate.Subtract(@DateTime.Now)<=@TimeSpan.FromSeconds(60))
+                                    {
+                                        <span>@ViewBag.Auction.EndDate.Subtract(@DateTime.Now).Seconds seconds left</span>
+                                    }
+                                    else if(@ViewBag.Auction.EndDate.Subtract(@DateTime.Now)<=@TimeSpan.FromMinutes(60))
+                                    {
+                                        <span>@ViewBag.Auction.EndDate.Subtract(@DateTime.Now).Minutes minutes left</span>
+                                    }
+                                    else if(@ViewBag.Auction.EndDate.Subtract(@DateTime.Now)<=@TimeSpan.FromHours(24))
+                                    {
+                                        <span>@ViewBag.Auction.EndDate.Subtract(@DateTime.Now).Hours hours left</span>
+                                    }
+                                    else if(@ViewBag.Auction.EndDate.Subtract(@DateTime.Now)<=@TimeSpan.FromDays(60))
+                                    {
+                                        <span>@ViewBag.Auction.EndDate.Subtract(@DateTime.Now).Days days left</span>
+                                    }
+                                    else{
+                                        <span>a long time</span>
+                                    }
+                </h3>
+
+                <p>@ViewBag.Auction.ProductDescription</p>
+                @foreach(var topper in ViewBag.Top)
+                {
+                <h3>Current Highest Bid : <span>@topper.user.FirstName</span></h3>
+                <h4>@topper.BidValue</h4>
+
+                }
+                <form action="createBid" method="POST">
+                    <input type="number" name="bids"/>
+                    <input type="hidden" value="@ViewBag.Auction.Id" name="auction_id"/>
+                    <button type="submit" class="btn btn-submit">Bid!!</button>
+                </form>
+        </body>
+    </html>
+}

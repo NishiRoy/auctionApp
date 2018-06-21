@@ -1,0 +1,53 @@
+﻿@using beltExam.Models
+@model Auction
+@{
+    ViewData["Title"] = "Welcome to Royeby's";
+}
+@if(ViewBag.id==null)
+{
+    <html>
+        <body>
+                <h1>Please login!</h1>
+                <form action="redirectlogin" method="GET">
+                <button type="submit" class="btn btn-submit">login/Register</button>
+                </form>
+        </body>
+    </html>
+}
+else
+{
+     <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Home Page</title>
+            <link rel="stylesheet" type="text/css" href="~/css/mystyles.css">
+        </head>
+        <body>
+            
+            <h2>@ViewData["Title"] <span>@ViewData["Name"]</span></h2>
+            <br/><hr>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-4 pull-left">
+                        <p>@ViewBag.Error</p>
+                    <form asp-action="CreateAuction" asp-controller="Home" method="POST">
+                        <label asp-for="ProductName">Product Name</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label asp-for="StartingBid">Starting Bid</label><br/><br/>
+                        <input asp-for="ProductName"/>&nbsp;<input asp-for="StartingBid"/>
+                        <span asp-validation-for="ProductName"></span><span asp-validation-for="StartingBid"></span>
+                        <br/><br/>
+                                               
+                        <label asp-for="ProductDescription">Product Description</label><br/><br/>
+                        <textarea rows="4" cols="50" asp-for="ProductDescription"></textarea>
+                        <span asp-validation-for="ProductDescription"></span>
+                        <label asp-for="EndDate">EndDate</label><br/><br/><input asp-for="EndDate"/>
+                        <span asp-validation-for="EndDate"></span>
+                        <br/><br/>
+                        <button type="submit" class="btn btn-create">Create Auction</button>
+                        </form>
+                </div>
+            </div>
+
+        </body>
+    </html>
+}

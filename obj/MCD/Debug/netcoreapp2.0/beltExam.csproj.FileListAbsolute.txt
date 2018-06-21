@@ -1,0 +1,11 @@
+C:\Users\rohit\Desktop\codingdojo_cSharp\beltExam\bin\MCD\Debug\netcoreapp2.0\beltExam.deps.json
+C:\Users\rohit\Desktop\codingdojo_cSharp\beltExam\bin\MCD\Debug\netcoreapp2.0\beltExam.runtimeconfig.json
+C:\Users\rohit\Desktop\codingdojo_cSharp\beltExam\bin\MCD\Debug\netcoreapp2.0\beltExam.runtimeconfig.dev.json
+C:\Users\rohit\Desktop\codingdojo_cSharp\beltExam\bin\MCD\Debug\netcoreapp2.0\beltExam.dll
+C:\Users\rohit\Desktop\codingdojo_cSharp\beltExam\bin\MCD\Debug\netcoreapp2.0\beltExam.pdb
+C:\Users\rohit\Desktop\codingdojo_cSharp\beltExam\obj\MCD\Debug\netcoreapp2.0\beltExam.csprojResolveAssemblyReference.cache
+C:\Users\rohit\Desktop\codingdojo_cSharp\beltExam\obj\MCD\Debug\netcoreapp2.0\beltExam.csproj.CoreCompileInputs.cache
+C:\Users\rohit\Desktop\codingdojo_cSharp\beltExam\obj\MCD\Debug\netcoreapp2.0\beltExam.AssemblyInfoInputs.cache
+C:\Users\rohit\Desktop\codingdojo_cSharp\beltExam\obj\MCD\Debug\netcoreapp2.0\beltExam.AssemblyInfo.cs
+C:\Users\rohit\Desktop\codingdojo_cSharp\beltExam\obj\MCD\Debug\netcoreapp2.0\beltExam.dll
+C:\Users\rohit\Desktop\codingdojo_cSharp\beltExam\obj\MCD\Debug\netcoreapp2.0\beltExam.pdb

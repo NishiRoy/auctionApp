@@ -1,0 +1,48 @@
+﻿@using beltExam.Models
+@model User
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+        <form asp-action="Validation" asp-controller="Home" method="post">
+            <h2>Registration </h2>
+            <table>
+              <tr><td><label asp-for="FirstName">First Name:</label></td>
+                <td> <span asp-validation-for="FirstName"></span><input asp-for="FirstName"></td></tr>
+              <tr><td><label asp-for="LastName">Last Name:</label></td>
+                <td> <span asp-validation-for="LastName"></span><input asp-for="LastName"></td></tr>
+              <tr><td><label asp-for="Email">
+                Email:</label></td>
+                <td> <span asp-validation-for="Email"></span><input asp-for="Email"></td></tr>
+              <tr><td><label asp-for="Password">
+                Password:</label></td>
+                <td> <span asp-validation-for="Password"></span><input asp-for="Password"></td></tr>
+              <tr><td><label for="Confirm">
+                Confirm Password:</label></td>
+                <td>@ViewBag.error  <input type="text" name="Confirm"></td></tr>
+              
+            </table><br/>
+              <input type="submit" value="submit">
+          </form>
+          <div>
+              
+          </div>
+          <form asp-action="Login" asp-controller="Home" method="post">
+      
+            <br/><br/>
+            <h2>Login </h2>
+            <table>
+                <tr><td>Email :</td><td><input type="text" name="lemail"></td></tr>
+                <tr><td>Password :</td><td><input type="password" name="lpassword"></td></tr>
+                <tr>@ViewBag.loginerror</tr>
+              </table>
+              <br/>
+              <input type="submit" value="submit">
+            </form>
+           
+    
+</body>
+</html>

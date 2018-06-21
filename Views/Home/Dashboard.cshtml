@@ -1,0 +1,95 @@
+@using beltExam.Models
+@model Auction
+@{
+    ViewData["Title"] = "Welcome to Royeby's";
+}
+
+@{
+    var auctions=ViewBag.Auctions as IEnumerable<beltExam.Models.Auction>;
+}
+@if(ViewBag.id==null)
+{
+    <html>
+        <body>
+                <h1>Please login!</h1>
+                <form action="redirectlogin" method="GET">
+                <button type="submit" class="btn btn-submit">login/Register</button>
+                </form>
+        </body>
+    </html>
+}
+else
+{
+     <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Home Page</title>
+            <link rel="stylesheet" type="text/css" href="~/css/mystyles.css">
+        </head>
+        <body>
+            <div class="container">
+
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <th class="col">Product</th>
+                        <th class="col">Seller</th>
+                        <th class="col">Top Bid</th>
+                        <th class="col">Time Remaining</th>
+                        <th class="col">Actions</th>
+                    </thead>
+                    <tbody>
+                        @foreach(var auction in auctions)
+                        {
+                            <tr>
+                                <td><form action="viewauction" method="post">
+                                    <input type="hidden" value="@auction.Id" name="auction_id">
+                                    <button type="submit" style="background: none; border: none;;">@auction.ProductName</button>
+                                    </form>
+                                </td>
+                                <td>@auction.host.FirstName</td>
+                                <td>@foreach(var item in  ViewBag.Tops)
+                                    {
+                                        @if(item.Key ==auction.Id)
+                                        {
+                                            <p>@item.Value</p>
+                                        }
+                                     }
+                                        </td>
+                                <td> @if(@auction.EndDate.Subtract(@DateTime.Now)<=@TimeSpan.FromSeconds(60))
+                                    {
+                                        <p>@auction.EndDate.Subtract(@DateTime.Now).Seconds seconds left</p>
+                                    }
+                                    else if(@auction.EndDate.Subtract(@DateTime.Now)<=@TimeSpan.FromMinutes(60))
+                                    {
+                                        <p>@auction.EndDate.Subtract(@DateTime.Now).Minutes minutes left</p>
+                                    }
+                                    else if(@auction.EndDate.Subtract(@DateTime.Now)<=@TimeSpan.FromHours(24))
+                                    {
+                                        <p>@auction.EndDate.Subtract(@DateTime.Now).Hours hours left</p>
+                                    }
+                                    else if(@auction.EndDate.Subtract(@DateTime.Now)<=@TimeSpan.FromDays(60))
+                                    {
+                                        <p>@auction.EndDate.Subtract(@DateTime.Now).Days days left</p>
+                                    }
+                                    else{
+                                        <p>a long time</p>
+                                    }
+                                </td>
+                                <td>@if(ViewBag.id==auction.host.Id)
+                                {
+                                    <form action="deleteauction" method="post">
+                                    <input type="hidden" value="@auction.Id" name="auction_id">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <p>@ViewBag.Error</p>
+        </body>
+    </html>
+}
